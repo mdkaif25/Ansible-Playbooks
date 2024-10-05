@@ -1,0 +1,17 @@
+
+
+#Ansible playbook for Cron job
+
+---
+- name : Playbook to create cron job
+  hosts : all
+  become : yes
+  tasks : 
+
+   - name : create cron job
+     cron : 
+      - name : "Everyday backup"
+        minute : 0
+        hour : 5
+        job : "/usr/local/bin/backup.sh"
+        user : "DevUser"

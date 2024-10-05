@@ -1,0 +1,26 @@
+
+#Use ansible variables in playbooks
+
+---
+- name : Using variable to install nginx and start service.
+  hosts : all
+  become : yes
+  vars : 
+   nginx_package : nginx
+   service_name : nginx
+
+  tasks : 
+   
+   - name : Install nginx server
+     apt : 
+      name : "{{ nginx_package }}"
+      state : present
+
+   - name : Start nginx service.
+     service :
+      name : "{{ service_name }}" 
+      state : started
+  
+        
+
+   

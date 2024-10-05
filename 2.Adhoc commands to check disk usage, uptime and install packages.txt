@@ -1,0 +1,16 @@
+
+
+#To check disk usage of all remote hosts.
+
+Adhoc command:
+ansible all -m shell -a "df -h" -i hosts
+
+#To check uptime of all the remote hosts.
+
+Adhoc command:
+ansible all -m command -a "uptime" -i hosts
+
+#To install a package on remote hosts.
+
+Adhoc command:
+ansible all -m apt -a "name:nginx state:present" -i hosts

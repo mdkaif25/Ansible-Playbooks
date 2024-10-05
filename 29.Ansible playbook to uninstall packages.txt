@@ -1,0 +1,14 @@
+
+
+#Ansible playbook to uninstall packages
+
+---
+- name : Remove packages
+  hosts : all
+  become : yes
+  tasks :
+
+   - name : Delete packages
+     apt :
+      name : curl
+      state : absent

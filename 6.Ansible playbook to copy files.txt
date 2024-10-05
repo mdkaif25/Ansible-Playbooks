@@ -1,0 +1,17 @@
+
+
+#Copy Nginx web server configuration file to remote servers
+
+---
+- name : Copy Nginx configuration file to remote servers
+  hosts: all
+  become : yes
+  tasks :
+
+   - name : Copy Nginx config
+     copy : 
+      src : /home/user/nginx.conf
+      dest : /etc/nginx/nginx.conf
+      mode : 0644 
+      
+     

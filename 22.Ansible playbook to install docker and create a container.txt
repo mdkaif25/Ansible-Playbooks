@@ -1,0 +1,28 @@
+
+
+#Ansible playbook to Install docker and start a container
+
+---
+- name : Install docker and start a container
+  hosts : all
+  become : yes
+  tasks : 
+
+   - name : Install docker
+     apt : 
+      name : docker-ce
+      state : present
+
+   - name : Start and enable docker
+     service : 
+      name : docker
+      state : started
+      enabled : yes
+
+   - name : Start a Nginx container
+     docker_conatiner : 
+      name : nginx
+      image : Nginx
+      state : started
+      ports : 
+       - "8080 : 80"

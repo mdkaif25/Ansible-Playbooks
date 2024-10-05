@@ -1,0 +1,21 @@
+
+
+#Ansible playbook to install specific version of nginx webserver
+
+---
+- name : Install specific version of nginx 
+  hosts : all
+  become : yes
+  tasks :
+
+   - name : Install nginx on Debian
+     apt : 
+      name : nginx=1.18.0-0ubuntu1
+      state : present
+     when : ansible_os_family == "Debian" 
+
+   - name : Install nginx on RedHat
+     yum :
+      name : nginx-1.18.0-1.el7.ngx
+      state : present
+     when : ansible_os_family == "RedHat"

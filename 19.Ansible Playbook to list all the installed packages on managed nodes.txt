@@ -1,0 +1,17 @@
+
+
+#Ansible Playbook to list all the installed packages
+
+---
+- name : Playbook to install all installed packages
+  hosts : all
+  become : yes
+  tasks : 
+
+   - name : List of installed packages
+     shell : "apt list --installed"
+     register : package_list                    #stores the output in package_list variable.
+
+   - name : Display installed packages
+     debug :
+      var : package_list.stdout_lines           #outputs the values in package_list on terminal.

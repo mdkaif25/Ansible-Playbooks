@@ -1,0 +1,15 @@
+
+
+#Ansible playbook to change hostname of managed nodes
+
+---
+- name : Change hostname of managed nodes
+  hosts : all
+  become : yes
+  vars :
+   new_hostname : "mdkaif" 
+  tasks : 
+
+   - name : Change hostname
+     hostname : 
+      name : "{{ new_hostname }}" 

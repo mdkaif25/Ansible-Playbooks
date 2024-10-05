@@ -1,0 +1,17 @@
+
+
+#Ansible Playbook to gather facts about OS version of managed nodes
+
+---
+- name : Gather facts about OS version
+  hosts : all
+  become : yes
+  tasks :
+
+   - name : Gather OS facts
+     setup :                                      #Setup collects information about target systems
+      filter : ansible_distribution               #Filter filters the information, and ansible_distribution holds info about OS version
+
+   - name : Display OS version information
+     debug : 
+      var : ansible_distribution_version

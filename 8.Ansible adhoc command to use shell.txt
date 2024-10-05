@@ -1,0 +1,5 @@
+
+
+#Running shell in Adhoc command
+
+ansible all -m shell -a " ls -l /tmp " -i hosts

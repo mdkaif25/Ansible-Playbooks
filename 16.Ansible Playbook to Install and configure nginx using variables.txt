@@ -1,0 +1,28 @@
+
+
+#Ansible playbook to install and configure nginx using variables
+
+---
+- name : Install and configure nginx using variables
+  hosts : all
+  become : yes
+  vars : 
+    package_name : nginx
+    service_name : nginx
+    config_file : /etc/nginx/nginx.cong
+  tasks : 
+
+   - name : Install Nginx
+     apt : 
+      name : "{{ package_name }}"
+      state : present
+     
+   - name : Configure Nginx
+     copy :
+      src : ./nginx.conf
+      dest : "{{ config_file }}"
+
+   - name : Nginx service
+     service : 
+      name : "{{ service_name }}"
+      state : Started

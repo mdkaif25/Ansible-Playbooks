@@ -1,0 +1,15 @@
+
+
+#Ansible playbook to delete a directory
+
+---
+- name : Delete directory
+  hosts : all
+  become : yes
+  tasks :
+
+   - name : Delete directory
+     file : 
+      path : /etc/ansible/ansible.cfg
+      state : absent
+       

@@ -1,0 +1,23 @@
+
+#Check condition on Playbook
+
+---
+- name : Install web server conditionally
+  hosts : all
+  become : yes
+  tasks : 
+
+   - name : Install nginx when OS is Debian and is not installed
+     apt : 
+      name : nginx
+      state : present
+     when : 
+      - ansible_os_release == "Debian"
+      - nginx_installed.rc != 0
+   - name : Install httpd when OS is RedHat and is not installed
+     yum : 
+      name : httpd
+      state : present
+     when : 
+      - ansible_os_release =="RedHat"  
+      - httpd_installed.rc != 0

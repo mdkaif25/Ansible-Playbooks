@@ -1,0 +1,17 @@
+
+
+
+#Ansible playbook to download file from internet to remote servers
+
+---
+- name : playbook to download file from internet
+  hosts : all
+  become : yes
+  tasks : 
+
+   - name : Download file from internet
+     get_url : 
+      url : https://example.com/file.tar.gz
+      dest : /tmp/file.tar.gz
+      mode : '0600'
+      force : yes        #Force download, even if the file already exists.

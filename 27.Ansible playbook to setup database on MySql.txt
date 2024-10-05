@@ -1,0 +1,33 @@
+
+
+#Ansible playbook to setup database on MySql.
+
+---
+- name : Setup MySql database 
+  hosts : all
+  become : yes
+  vars : 
+    mysql_root_password : "mdkaif_password"
+  tasks :
+   - name : Install MySql
+     apt :
+      name : mysql-server
+      state :present
+     when : ansible_os_family == "Debian"
+
+   - name : Start MySql service
+     service :
+      name : mysql
+      state : started
+      enabled : yes
+
+   - name : Set MySql root password
+     mysql_user : 
+      name : root
+      host : localhost
+      password : "{{ mysql_root_password }}"
+   
+   - name : Create a sql database
+     mysql_db :
+      name : mdkaif_database
+      state : :present

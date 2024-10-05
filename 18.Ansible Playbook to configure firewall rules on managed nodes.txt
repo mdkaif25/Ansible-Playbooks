@@ -1,0 +1,39 @@
+
+
+#Ansible Playbook to configure firewall rules on managed nodes
+
+---
+- name : Configure firewall rules
+  hosts : all
+  become : yes
+  tasks : 
+
+   - name : Install firewall
+     apt : 
+      name : firewalld
+      state : present
+     
+   - name : Start and enable firewall service
+     service :
+      name : firewalld 
+      state : started
+      enabled : yes 
+   
+   - name : Allow HTTP service on firewall
+     firewalld : 
+      service : http
+      permanent : yes
+      state : enabled
+      immediate : yes
+
+   - name : Allow SSH service on firewall
+     firewalld : 
+      service : SSH
+      permanent : yes
+      state : enabled
+      immediate : yes
+  
+   - name : Reload firewalld to apply changes
+     firewalld : 
+      state : reloaded
+      

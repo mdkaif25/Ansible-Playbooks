@@ -1,0 +1,25 @@
+
+
+#Ansible playbook to install git and clone a repository
+
+--- 
+- name : Install Git and clone a repository
+  hosts : all
+  become : yes
+  vars :
+   repo_url : "https://github.com/mdkaif/random_repository.git"
+   dest_dir : "/path/to/destination"
+  tasks : 
+
+   - name : Install Git
+     apt : 
+      name : git
+      state : present
+     when : ansible_os_release == 'Debian'
+
+   - name : Clone git repository
+     git :
+      repo : "{{ repo_url }}" 
+      dest : "{{ dest_dir }}"
+      clone : yes
+      update : yes          #if repo already exists, then update it with latest changes.

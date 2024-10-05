@@ -1,0 +1,15 @@
+
+
+#Ansible playbook to fetch logs from managed node
+
+---
+- name : Playbook to fetch log from managed nodes
+  hosts : all
+  become : yes
+  tasks : 
+
+   - name : Fetch Nginx Logs from managed node
+     fetch :
+      src :  /var/log/nginx/access.log
+      dest : /tmp/logs/{{ inventory_hostname }}/
+      

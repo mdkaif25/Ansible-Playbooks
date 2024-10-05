@@ -1,0 +1,21 @@
+
+#Playbook to install nginx on remote servers
+
+---
+- name : Install nginx web server
+  hosts : all
+  become : yes
+  tasks : 
+   
+   - name : Install nginx on Debian
+     apt :
+      name : nginx
+      state : present
+     when : ansible_os_family =="Debian"
+   
+   - name : Install nginx on RedHat
+     yum : 
+      name : nginx
+      state : present
+     when : ansible_os_family == "RedHat"
+     

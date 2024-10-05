@@ -1,0 +1,14 @@
+
+
+#Ansible playbook to install Git on remote servers
+
+---
+- name : Playbook to install git on remote servers
+  hosts : all
+  become : yes
+  tasks : 
+
+   - name : Install Git on Debian based OS
+     apt : 
+      name : git
+      state : present

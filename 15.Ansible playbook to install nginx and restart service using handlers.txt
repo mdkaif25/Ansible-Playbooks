@@ -1,0 +1,21 @@
+
+
+#Ansible playbook to install Nginx and restart services using handlers
+
+---
+- name : Playbook to install Nginx and restart service using handler
+  hosts : all
+  become : yes
+  tasks :
+
+   - name : Install Nginx
+     apt : 
+      name : Nginx
+      state : present
+
+  handlers : 
+   
+   - name : Restart Nginx
+     service : 
+      name : nginx
+      state : restarted 

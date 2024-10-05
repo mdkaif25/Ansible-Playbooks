@@ -1,0 +1,14 @@
+
+
+#Ansible playbook to create a user
+
+---
+- name : Playbook to create a user
+  hosts : all
+  become : yes
+  tasks : 
+
+   - name : Create a user
+     user : 
+      name : David
+      state : present

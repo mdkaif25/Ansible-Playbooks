@@ -1,0 +1,19 @@
+
+
+#Ansible playbook to create multiple users using loops
+
+---
+- name : Playbook to create multiple users
+  hosts : all
+  become : yes
+  tasks : 
+
+   - name : Create users
+     user : 
+      name : "{{ item.name }}"
+      state : present
+      groups : "{{ item.group }}"
+     with_items : 
+      - { name : 'user1' , groups : 'group1'}
+      - { name : 'user2' , groups : 'group2'}
+      - { name : 'user3' , groups : 'group3'}

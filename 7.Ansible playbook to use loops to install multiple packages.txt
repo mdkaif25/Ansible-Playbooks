@@ -1,0 +1,19 @@
+
+
+#Using Loops in ansible playbook
+
+--- 
+- name : Install multiple packages through loop.
+  hosts : all
+  become : yes
+  tasks : 
+   
+   - name : Install required packages on remote servers
+     apt : 
+      - name : "{{ item }}"
+      - state : present
+     with_items : 
+      - nginx
+      - git
+      - curl 
+      - vim

@@ -1,0 +1,14 @@
+
+
+#Ansible playbook to restart nginx service
+
+--- 
+- name : Playbook to restart nginx service
+  hosts : all
+  become : yes
+  tasks : 
+
+   - name : Restart nginx service
+     service:
+      name : nginx
+      state : restarted
